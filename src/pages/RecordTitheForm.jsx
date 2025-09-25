@@ -17,7 +17,7 @@ const RecordTitheForm = () => {
     const fetchMembers = async () => {
       try {
         const res = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/tasks/getAllMembers"
+          `${import.meta.env.VITE_API_URL}/churchapp/tasks/getAllMembers`
         );
         setMembers(res.data);
       } catch (err) {
@@ -37,7 +37,7 @@ const RecordTitheForm = () => {
     setMessage("");
     try {
       await axios.post(
-        "https://afg-churchbackend.onrender.com/churchapp/tithes/record",
+        `${import.meta.env.VITE_API_URL}/churchapp/tithes/record`,
         formData
       );
       setMessage("✅ Tithe recorded successfully.");

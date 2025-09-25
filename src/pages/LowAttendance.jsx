@@ -10,7 +10,7 @@ const LowAttendance = () => {
     const fetchLowAttendance = async () => {
       try {
         const { data } = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/attendance/lowAttendance"
+          `${import.meta.env.VITE_API_URL}/churchapp/attendance/lowAttendance`
         );
         setLowAttendanceList(data);
       } catch (err) {

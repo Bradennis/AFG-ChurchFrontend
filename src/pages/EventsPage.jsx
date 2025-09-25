@@ -16,7 +16,7 @@ const EventsPage = () => {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/events"
+          `${import.meta.env.VITE_API_URL}/churchapp/events`
         );
         setEvents(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ const EventsPage = () => {
     if (window.confirm("Are you sure you want to delete this event?")) {
       try {
         await axios.delete(
-          `https://afg-churchbackend.onrender.com/churchapp/events/${id}`
+          `${import.meta.env.VITE_API_URL}/churchapp/events/${id}`
         );
         setEvents((prev) => prev.filter((event) => event._id !== id));
         alert("Event deleted successfully.");
@@ -143,7 +143,7 @@ const EventsPage = () => {
             }
           >
             <img
-              src={`https://afg-churchbackend.onrender.com/${event.image}`}
+              src={`${import.meta.env.VITE_API_URL}/${event.image}`}
               alt={event.title}
               className='event-image'
             />

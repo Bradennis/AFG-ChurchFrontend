@@ -13,7 +13,9 @@ const MemberStats = ({ memberId }) => {
       try {
         setLoading(true);
         const { data } = await axios.get(
-          `https://afg-churchbackend.onrender.com/churchapp/attendance/memberStats/${memberId}`
+          `${
+            import.meta.env.VITE_API_URL
+          }/churchapp/attendance/memberStats/${memberId}`
         );
         setStats(data);
         setError("");

@@ -15,7 +15,7 @@ const TithesChart = () => {
 
   useEffect(() => {
     axios
-      .get("https://afg-churchbackend.onrender.com/churchapp/tithes/summary")
+      .get(`${import.meta.env.VITE_API_URL}/churchapp/tithes/summary`)
       .then((res) => setData(res.data))
       .catch((err) => console.error("Failed to fetch chart data", err));
   }, []);

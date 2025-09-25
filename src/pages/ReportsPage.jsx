@@ -24,7 +24,7 @@ const ReportPage = () => {
     const fetchReports = async () => {
       try {
         const response = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/report"
+          `${import.meta.env.VITE_API_URL}/churchapp/report`
         );
         setReports(response.data);
         console.log(response.data);
@@ -52,7 +52,7 @@ const ReportPage = () => {
 
     try {
       await axios.post(
-        "https://afg-churchbackend.onrender.com/churchapp/report/upload",
+        `${import.meta.env.VITE_API_URL}/churchapp/report/upload`,
         formData
       );
       setUploadStatus("success");
@@ -89,7 +89,7 @@ const ReportPage = () => {
 
       // Fetch reports based on parameters
       const response = await axios.get(
-        "https://afg-churchbackend.onrender.com/churchapp/report",
+        `${import.meta.env.VITE_API_URL}/churchapp/report`,
         { params }
       );
 
@@ -286,7 +286,7 @@ const ReportPage = () => {
             <p>Title: {matchedReport.title}</p>
             <p>Date: {new Date(matchedReport.date).toLocaleDateString()}</p>
             <p>Uploaded by: {matchedReport.sender.name}</p>
-            {/* <a href={`https://afg-churchbackend.onrender.com/${matchedReport.fileUrl}`} download> */}
+            {/* <a href={`${import.meta.env.VITE_API_URL}/${matchedReport.fileUrl}`} download> */}
             <button className='download-btn'>
               <FaDownload /> Download Report
             </button>

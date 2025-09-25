@@ -17,7 +17,7 @@ const MembersPage = () => {
   const fetchUsers = async (category = "all", search = "") => {
     try {
       const response = await axios.get(
-        "https://afg-churchbackend.onrender.com/churchapp/tasks/getAllMembers",
+        `${import.meta.env.VITE_API_URL}/churchapp/tasks/getAllMembers`,
         {
           params: {
             category,
@@ -109,7 +109,9 @@ const MembersPage = () => {
                   <img
                     src={
                       member.profileImage
-                        ? `https://afg-churchbackend.onrender.com/${member.profileImage}`
+                        ? `${import.meta.env.VITE_API_URL}/${
+                            member.profileImage
+                          }`
                         : prof
                     }
                     alt='Profile'

@@ -12,7 +12,9 @@ const TithesHistory = () => {
     try {
       const params = new URLSearchParams(filters);
       const { data } = await axios.get(
-        `https://afg-churchbackend.onrender.com/churchapp/tithes/history?${params.toString()}`
+        `${
+          import.meta.env.VITE_API_URL
+        }/churchapp/tithes/history?${params.toString()}`
       );
       setTithes(data);
     } catch (err) {

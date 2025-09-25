@@ -66,7 +66,9 @@ const AddMember = () => {
 
     try {
       const response = await axios.patch(
-        `https://afg-churchbackend.onrender.com/churchapp/tasks/editMember/${member._id}`,
+        `${import.meta.env.VITE_API_URL}/churchapp/tasks/editMember/${
+          member._id
+        }`,
         formData
       );
       if (response.status === 200) {

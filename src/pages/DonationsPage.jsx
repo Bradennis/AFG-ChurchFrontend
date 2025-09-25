@@ -47,7 +47,7 @@ const DonationsPage = () => {
     const fetchDonations = async () => {
       try {
         const response = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/donations",
+          `${import.meta.env.VITE_API_URL}/churchapp/donations`,
           {
             params: searchTerm ? { date: searchTerm } : {},
           }

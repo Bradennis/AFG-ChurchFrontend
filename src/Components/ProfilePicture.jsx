@@ -22,7 +22,7 @@ const ProfilePicture = () => {
         <img
           src={
             member?.profileImage
-              ? `https://afg-churchbackend.onrender.com/${member.profileImage}`
+              ? `${import.meta.env.VITE_API_URL}/${member.profileImage}`
               : prof
           }
           alt='Profile'

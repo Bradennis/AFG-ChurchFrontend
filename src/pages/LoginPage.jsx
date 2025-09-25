@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./loginPage.css";
+import "./LoginPage.css";
 import { ClipLoader } from "react-spinners";
 import { GlobalContext } from "../Context/ContextApi";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ const LoginPage = ({ onLogin }) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const url = "https://afg-churchbackend.onrender.com/churchapp/login";
+    const url = `${import.meta.env.VITE_API_URL}/churchapp/login`;
 
     try {
       const response = await axios.post(url, details);

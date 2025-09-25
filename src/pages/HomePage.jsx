@@ -60,7 +60,7 @@ const HomePage = ({ isAdmin = true }) => {
     const fetchMembersSummary = async () => {
       try {
         const { data } = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/tasks/getAllMembersSummary"
+          `${import.meta.env.VITE_API_URL}/churchapp/tasks/getAllMembersSummary`
         );
         setMembersSummary(data);
       } catch (error) {
@@ -71,7 +71,7 @@ const HomePage = ({ isAdmin = true }) => {
     const fetchProceedsSummary = async () => {
       try {
         const { data } = await axios.get(
-          "https://afg-churchbackend.onrender.com/churchapp/donations/proceedsSummary"
+          `${import.meta.env.VITE_API_URL}/churchapp/donations/proceedsSummary`
         );
         setProceedsSummary({
           totalProceeds: data.totalProceeds,
