@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import "./LoginPage.css";
+import "./Login.css";
 import { ClipLoader } from "react-spinners";
 import { GlobalContext } from "../Context/ContextApi";
 import { useNavigate } from "react-router-dom";
