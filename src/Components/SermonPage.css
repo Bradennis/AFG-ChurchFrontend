@@ -1,0 +1,163 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.sermon-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Header Section */
+.sermon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.sermon-page-heading {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #284268;
+}
+
+/* Search Bar */
+.sermon-page-search {
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+/* Admin Upload Button */
+.admin-sermon-upload-button {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.admin-sermon-upload-button button {
+  background-color: #284268;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.admin-sermon-upload-button button:hover {
+  background-color: #3b5b8e;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.event-card {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+
+.event-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.video-container {
+  position: relative;
+}
+
+.video-preview {
+  width: 100%;
+  height: auto;
+  border-bottom: 2px solid #f0f0f0;
+  border-radius: 4px;
+}
+
+.event-details {
+  padding: 1rem;
+  text-align: left;
+}
+
+.event-details h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+  color: #0d3867;
+  font-weight: 600;
+}
+
+.event-details p {
+  margin: 0.5rem 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.event-card {
+  position: relative;
+}
+
+.event-card:hover .popup-buttons {
+  display: flex;
+}
+
+.popup-buttons {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  gap: 10px;
+}
+
+.popup-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.popup-buttons button:hover {
+  background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+  .event-details h3 {
+    font-size: 1rem;
+  }
+
+  .event-details p {
+    font-size: 0.8rem;
+  }
+}

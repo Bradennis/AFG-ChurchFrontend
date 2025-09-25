@@ -1,0 +1,112 @@
+/* Global Styles */
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f7f9fc;
+  margin: 0;
+  padding: 0;
+}
+
+/* Settings Page */
+.settings-page {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #2d3e50;
+  margin-bottom: 30px;
+}
+
+.settings-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.settings-section h3 {
+  font-size: 1.3rem;
+  color: #34495e;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.settings-section h3 svg {
+  margin-right: 10px;
+  color: #4171d6;
+}
+
+.settings-input {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.settings-input label {
+  font-size: 0.9rem;
+  color: #6a7c94;
+  margin-bottom: 5px;
+}
+
+.settings-input input {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #dfe5ec;
+  border-radius: 8px;
+  color: #2f3e4e;
+  background-color: #f9fafc;
+}
+
+.settings-checkbox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.settings-checkbox label {
+  font-size: 0.9rem;
+  color: #2f3e4e;
+  margin-left: 5px;
+}
+
+.settings-btn {
+  padding: 12px 25px;
+  background-color: #23549f;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: block;
+  margin: auto;
+  width: 100%;
+}
+
+.settings-btn:hover {
+  background-color: #183c73;
+}
+
+.settings-btn:focus {
+  outline: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .settings-page {
+    padding: 15px;
+  }
+
+  .settings-section {
+    padding: 15px;
+  }
+}

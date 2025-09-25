@@ -1,0 +1,166 @@
+/* Active category tab */
+.upload-side-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.events-upload-side-tabs-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #eaeef3;
+  color: #284268;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.events-upload-side-tabs-btn:hover,
+.activity {
+  background-color: #284268;
+  color: white;
+}
+
+.events-tabs {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+  flex-wrap: wrap;
+}
+
+.events-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f7f9fc;
+  font-family: "Arial", sans-serif;
+}
+
+.events-page-heading {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #284268;
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.search-bar {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  color: #284268;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.upload-side-tabs {
+  display: flex;
+  gap: 20px;
+}
+
+.upload-side-tabs-btn,
+.tabs-view {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #eaeef3;
+  color: #284268;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-side-tabs-btn:hover,
+.tabs-view.active-tab {
+  background-color: #284268;
+  color: white;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.event-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+}
+
+.event-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.event-details {
+  padding: 15px;
+  color: #284268;
+}
+
+.popup-buttons {
+  display: none;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  gap: 10px;
+}
+
+.popup-buttons button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.popup-buttons button:hover {
+  background-color: #0056b3;
+}
+
+.btn-add {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #284268;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-add:hover {
+  background-color: #3b5a92;
+}
+
+@media (max-width: 768px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+  }
+}

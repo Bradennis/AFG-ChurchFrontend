@@ -1,0 +1,90 @@
+/* UpdateSermonPage.css */
+
+.update-sermon-page {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+.update-sermon-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.update-sermon-header h2 {
+  font-size: 2rem;
+  color: #284268;
+}
+
+.update-sermon-form {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.update-sermon-form label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+  color: #555;
+}
+
+.update-sermon-form input,
+.update-sermon-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.update-sermon-form input[type="file"] {
+  padding: 5px;
+}
+
+.update-sermon-form button {
+  width: 100%;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.update-button {
+  background-color: #284268;
+  color: #fff;
+}
+
+.update-button:hover {
+  background-color: #1b2d45;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: #333;
+}
+
+.cancel-button:hover {
+  background-color: #aaa;
+}
+
+.form-error {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -10px;
+  margin-bottom: 10px;
+}
+
+.success-message {
+  color: green;
+  font-size: 1rem;
+  margin-top: 10px;
+  text-align: center;
+}

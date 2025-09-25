@@ -1,0 +1,176 @@
+/* AttendancePage.css */
+.attendance-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 50px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar::placeholder {
+  color: #999;
+}
+
+.search-bar:focus {
+  border-color: #284268;
+  box-shadow: 0 0 5px rgba(40, 66, 104, 0.3);
+}
+
+.attendance-table-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.top-row {
+  display: flex;
+  background-color: #284268;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sticky-header-left {
+  flex: 0 0 200px;
+  padding: 12px;
+  font-weight: bold;
+  background-color: #284268;
+  border-right: 1px solid #ccc;
+}
+
+.records-header {
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+}
+
+.record-cell.header {
+  min-width: 180px;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  background-color: #284268;
+  color: white;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.attendance-scroll-body {
+  display: flex;
+  height: 400px;
+}
+
+.left-column {
+  flex: 0 0 200px;
+  overflow: hidden;
+  background-color: #f4f6f9;
+  border-right: 1px solid #ccc;
+}
+
+.name-cell {
+  padding: 12px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.right-scrollable {
+  flex: 1;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.right-scrollable::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.record-row {
+  display: flex;
+  height: 60px;
+}
+
+.record-cell {
+  min-width: 180px;
+  padding: 12px;
+  text-align: center;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.record-cell.present {
+  background-color: #d1f8d1;
+  color: green;
+}
+
+.record-cell.absent {
+  background-color: #f8d1d1;
+  color: darkred;
+}
+
+.new-record-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.new-record-form input,
+.new-record-form select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.new-record-form button {
+  padding: 8px 16px;
+  background-color: #284268;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-record-form button:hover {
+  background-color: #3b5a8d;
+}
+
+.download-btn {
+  margin-top: 4px;
+  background: transparent;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: white;
+}
+
+.download-btn:hover {
+  color: #aad8ff;
+}

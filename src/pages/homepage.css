@@ -1,0 +1,295 @@
+/* General Styles */
+* {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.home-page-main {
+  color: #2c3e50;
+  padding: 20px;
+  background-color: #f9f9f9;
+}
+
+/* Admin & User Heading */
+.home-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.home-heading h3 {
+  font-size: 1.5rem;
+  color: #34495e;
+}
+
+.home-heading p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+/* Box Styles */
+.home-boxes {
+  margin-bottom: 30px;
+}
+
+.home-boxes h4 {
+  color: #34495e;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.sub-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.inner-boxes {
+  flex: 1;
+  min-width: 150px;
+  padding: 15px;
+  background: #ecf0f1;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.inner-boxes h4 {
+  color: #2980b9;
+  margin-bottom: 5px;
+}
+
+.inner-boxes p {
+  color: #7f8c8d;
+  font-size: 0.9rem;
+}
+
+/* Upcoming Events Section */
+.home-side-events h4 {
+  color: #34495e;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.events {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.event-sub {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.event-sub:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.1);
+}
+
+.event-sub img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.eventDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.eventDetails .event-name {
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #2c3e50;
+}
+
+.eventDetails .event-date {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+}
+
+.learn-more {
+  margin-top: 8px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  background: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.learn-more:hover {
+  background: #2e86c1;
+}
+
+/* Quick Actions */
+.home-quick-actions {
+  margin-top: 30px;
+}
+
+.home-quick-actions h4 {
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.quick-actions-box {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.quick-actions-box button {
+  padding: 10px 15px;
+  background: #2980b9;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease;
+}
+
+.quick-actions-box button:hover {
+  background: #1f618d;
+}
+
+/* Featured Sermon */
+.featured-sermon {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.featured-sermon h4 {
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.sermon-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background: #ecf0f1;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.sermon-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+}
+
+.sermon-details {
+  text-align: left;
+}
+
+.sermon-details p {
+  margin: 5px 0;
+  color: #7f8c8d;
+}
+
+.sermon-details button {
+  padding: 5px 10px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.sermon-details button:hover {
+  background: #1e8449;
+}
+
+/* Upcoming Events */
+.events .event-sub {
+  position: relative;
+  padding: 15px;
+  transition: transform 0.3s ease;
+}
+
+.events .event-sub:hover {
+  transform: scale(1.05);
+}
+
+.learn-more {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.learn-more:hover {
+  background: #2e86c1;
+}
+
+/* Weekly Announcements */
+.weekly-announcements {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 30px;
+  padding: 20px;
+  background: #ecf0f1;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  color: #2c3e50;
+}
+
+.weekly-announcements h4 {
+  font-size: 1.4rem;
+  color: #34495e;
+  margin-bottom: 15px;
+}
+
+.announcement-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  background: white;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.announcement-text {
+  font-size: 1rem;
+  color: #2c3e50;
+  line-height: 1.5;
+}
+
+.read-more {
+  align-self: flex-start;
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  background: #3498db;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.read-more:hover {
+  background: #2e86c1;
+  transform: scale(1.05);
+}

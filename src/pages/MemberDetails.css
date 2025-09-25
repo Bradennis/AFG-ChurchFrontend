@@ -1,0 +1,141 @@
+/* Base Styles */
+body {
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Member Details Container */
+.member-details {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Section */
+.details-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+.details-heading p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #243247;
+}
+
+.details-heading svg {
+  color: #e74c3c;
+  font-size: 1.5rem;
+}
+
+/* Profile Section */
+.profile {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+.prof-image img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #243247;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.prof-image img:hover {
+  transform: scale(1.1);
+}
+
+.profile h3,
+.section-title {
+  font-size: 1.2rem;
+  color: #243247;
+  margin: 0.5rem 0;
+}
+
+.departments {
+  display: flex;
+  gap: 20px;
+}
+.profile p {
+  font-size: 1rem;
+  color: #7f8c8d;
+}
+
+.update-details {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background: #243247;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.update-details:hover {
+  background: #3b5998;
+}
+
+.update-details span {
+  margin-left: 0.5rem;
+}
+
+/* Personal Info Section */
+.personal-info {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #243247;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.personal-info-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Info Categories */
+.category {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.info {
+  flex: 1;
+}
+
+.info p {
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-bottom: 0.3rem;
+  text-transform: capitalize;
+}
+
+.info h4 {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #34495e;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .category {
+    flex-direction: column;
+  }
+}

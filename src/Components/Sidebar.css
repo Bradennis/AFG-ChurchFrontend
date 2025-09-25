@@ -1,0 +1,99 @@
+.sidebar {
+  width: 200px;
+  height: 100vh;
+  background-color: #243247;
+  color: white;
+  transition: width 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  z-index: 1000;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* Hide sidebar by default in mobile view */
+.sidebar.mobile-hidden {
+  transform: translateX(-100%);
+}
+
+.menu {
+  list-style: none;
+  padding: 20px;
+}
+
+.menu li {
+  margin: 30px 0;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+.menu li a {
+  color: white;
+  text-decoration: none;
+}
+
+.menu li span {
+  margin-left: 20px;
+}
+
+.menu li:hover {
+  background-color: #1b283b;
+  padding: 10px;
+  margin-left: -10px;
+  cursor: pointer;
+}
+
+.toggle-btn {
+  background-color: white;
+  width: 100%;
+  cursor: pointer;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  z-index: 1000;
+}
+
+.content {
+  margin-left: 200px; /* Full sidebar width */
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+}
+
+.sidebar.collapsed + .content {
+  margin-left: 80px;
+}
+
+/* Mobile specific styles */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 250px;
+    transform: translateX(0); /* Reset to visible */
+  }
+
+  .sidebar.collapsed {
+    width: 250px;
+  }
+
+  /* Sidebar hidden by default unless toggled open */
+  .sidebar.mobile-hidden {
+    transform: translateX(-100%);
+  }
+
+  .toggle-btn {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .content {
+    margin-left: 0;
+    margin-top: 70px;
+  }
+
+  /* When the sidebar is toggled open in mobile view */
+  .sidebar.mobile-hidden + .content {
+    margin-left: 0;
+  }
+}
