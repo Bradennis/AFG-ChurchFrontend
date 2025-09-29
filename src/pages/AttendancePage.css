@@ -1,3 +1,20 @@
+/* Attendance navigation buttons */
+.attendance-nav-btn {
+  padding: 10px 20px;
+  background: linear-gradient(90deg, #284268 60%, #4e7ad2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(40, 66, 104, 0.07);
+}
+.attendance-nav-btn:hover {
+  background: linear-gradient(90deg, #4e7ad2 60%, #284268 100%);
+  box-shadow: 0 4px 16px rgba(40, 66, 104, 0.13);
+}
 /* AttendancePage.css */
 .attendance-container {
   padding: 20px;
@@ -139,7 +156,15 @@
   margin: 20px 0;
 }
 
-.new-record-form input,
+.new-record-form input[type="date"] {
+  width: 140px;
+  min-width: 100px;
+  max-width: 180px;
+  padding: 8px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
 .new-record-form select {
   padding: 8px 12px;
   border: 1px solid #ccc;
@@ -173,4 +198,237 @@
 
 .download-btn:hover {
   color: #aad8ff;
+}
+
+/* AttendancePage.css */
+.attendance-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.search-bar-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 1.5px solid #ccc;
+  border-radius: 50px;
+  outline: none;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar::placeholder {
+  color: #999;
+}
+
+.search-bar:focus {
+  border-color: #284268;
+  box-shadow: 0 0 5px rgba(40, 66, 104, 0.3);
+}
+
+.attendance-table-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.top-row {
+  display: flex;
+  background-color: #284268;
+  color: white;
+  position: sticky;
+  top: 0;
+  z-index: 3;
+}
+
+.sticky-header-left {
+  flex: 0 0 200px;
+  padding: 12px;
+  font-weight: bold;
+  background-color: #284268;
+  border-right: 1px solid #ccc;
+}
+
+.records-header {
+  display: flex;
+  overflow: hidden;
+  flex: 1;
+}
+
+.record-cell.header {
+  min-width: 180px;
+  padding: 10px;
+  text-align: center;
+  border-right: 1px solid #ccc;
+  background-color: #284268;
+  color: white;
+}
+
+.date {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.attendance-scroll-body {
+  display: flex;
+  height: 400px;
+}
+
+.left-column {
+  flex: 0 0 200px;
+  overflow: hidden;
+  background-color: #f4f6f9;
+  border-right: 1px solid #ccc;
+}
+
+.name-cell {
+  padding: 12px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  white-space: nowrap;
+}
+
+.right-scrollable {
+  flex: 1;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.right-scrollable::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.record-row {
+  display: flex;
+  height: 60px;
+}
+
+.record-cell {
+  min-width: 180px;
+  padding: 12px;
+  text-align: center;
+  border-right: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.record-cell.present {
+  background-color: #d1f8d1;
+  color: green;
+}
+
+.record-cell.absent {
+  background-color: #f8d1d1;
+  color: darkred;
+}
+
+.new-record-form {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.new-record-form input[type="date"] {
+  width: 140px;
+  min-width: 100px;
+  max-width: 180px;
+  padding: 8px 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.new-record-form select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.new-record-form button {
+  padding: 8px 16px;
+  background-color: #284268;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-record-form button:hover {
+  background-color: #3b5a8d;
+}
+
+.download-btn {
+  margin-top: 4px;
+  background: transparent;
+  border: none;
+  font-size: 1.1em;
+  cursor: pointer;
+  color: white;
+}
+
+.download-btn:hover {
+  color: #aad8ff;
+}
+
+/* Save Attendance Button */
+.save-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 24px;
+  font-size: 15px;
+  font-weight: bold;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.save-btn:hover {
+  background-color: #218838;
+  transform: scale(1.03);
+}
+
+.save-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Notification Messages */
+.notification {
+  text-align: center;
+  margin: 10px auto;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  width: fit-content;
+}
+
+.notification.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.notification.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
 }

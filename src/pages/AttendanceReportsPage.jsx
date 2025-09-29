@@ -11,10 +11,10 @@ const AttendanceReportsPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/churchapp/tasks/getAllMembers")
+      .get(`${import.meta.env.VITE_API_URL}/churchapp/attendance/members`)
       .then((res) => {
         const options = res.data.map((m) => ({
-          value: m._id,
+          value: m._id || m.id,
           label: `${m.fullName || `${m.firstName} ${m.lastName}`} - ${
             m.contact
           }`,

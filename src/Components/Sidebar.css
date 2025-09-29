@@ -1,3 +1,37 @@
+.sidebar-logo-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.sidebar-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 2px 8px #24324733;
+}
+
+.sidebar-title-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.sidebar-title-name {
+  font-size: 1rem;
+  color: #243247;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: bold;
+  background: #eaf1fa;
+  padding: 2px 10px;
+  border-radius: 8px;
+  letter-spacing: 1px;
+  box-shadow: 0 1px 4px #24324711;
+}
 .sidebar {
   width: 200px;
   height: 100vh;
@@ -6,6 +40,7 @@
   transition: width 0.3s ease, transform 0.3s ease;
   position: fixed;
   z-index: 1000;
+  margin-top: 38px;
 }
 
 .sidebar.collapsed {
@@ -48,10 +83,13 @@
   background-color: white;
   width: 100%;
   cursor: pointer;
-  padding: 20px;
+  padding: 20px 20px 20px 10px;
   position: fixed;
   top: 0;
   z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .content {

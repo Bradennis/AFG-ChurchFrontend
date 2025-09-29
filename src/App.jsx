@@ -25,6 +25,9 @@ import DonationDetails from "./Components/DonationDetails";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AttendancePage from "./pages/AttendancePage";
+import AttendanceReportsPage from "./pages/AttendanceReportsPage";
+import AttendanceSummaryChart from "./pages/AttendanceSummaryChart";
 // import UpdateEvent from "./Components/UpdateEvent";
 // import UpdateSermonPage from "./Components/UpdateSermonPage";
 
@@ -66,6 +69,15 @@ const App = () => {
                       <Route
                         path='/donation-details/:date'
                         element={<DonationDetails />}
+                      />
+                      <Route path='/attendance' element={<AttendancePage />} />
+                      <Route
+                        path='/attendance-reports'
+                        element={<AttendanceReportsPage />}
+                      />
+                      <Route
+                        path='/attendance-summary'
+                        element={<AttendanceSummaryChart />}
                       />
                       {/* <Route path='/create-event' element={<CreateEvents />} />
                       <Route

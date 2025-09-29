@@ -172,9 +172,9 @@ const DonationsPage = () => {
               <button onClick={() => navigate("/add-offering")}>
                 <FaPlus /> Record New Proceeds
               </button>
-              <button onClick={() => navigate("/payment")}>
+              {/* <button onClick={() => navigate("/payment")}>
                 <FaDonate /> Give Offering
-              </button>
+              </button> */}
             </div>
           </>
         ) : (

@@ -1,3 +1,164 @@
+.hero-message h5 {
+  font-size: 1.08rem;
+  margin: 0 0 8px 0;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: #1abc9c;
+  background: linear-gradient(90deg, #1abc9c 60%, #e74c3c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  text-shadow: 0 1px 4px #24324722;
+  display: inline-block;
+}
+/* Modern HomePage Redesign */
+.modern-home {
+  background: linear-gradient(120deg, #f9f9f9 60%, #eaf1fa 100%);
+  min-height: 100vh;
+}
+
+.hero-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  background: linear-gradient(90deg, #243247 60%, #eaf1fa 100%);
+  border-radius: 18px;
+  margin-bottom: 36px;
+  padding: 40px 28px 36px 28px;
+  box-shadow: 0 4px 24px #24324711;
+  min-height: 180px;
+}
+.hero-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 2px 12px #24324733;
+}
+.hero-message {
+  color: #fff;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+}
+.hero-message h2 {
+  font-size: 2.3rem;
+  margin-bottom: 8px;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 1px;
+  line-height: 1.15;
+  text-shadow: 0 2px 8px #24324744;
+}
+.hero-message p {
+  font-size: 1.18rem;
+  color: #eaf1fa;
+  font-weight: 400;
+  line-height: 1.5;
+  text-shadow: 0 1px 4px #24324722;
+}
+
+@media (max-width: 700px) {
+  .hero-section {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 10px 20px 10px;
+    gap: 18px;
+    min-height: unset;
+  }
+  .hero-img {
+    width: 90px;
+    height: 90px;
+    border-radius: 12px;
+  }
+  .hero-message {
+    max-width: 100%;
+    padding: 0 2px;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-message h2 {
+    font-size: 1.3rem;
+    margin-bottom: 6px;
+  }
+  .hero-message p {
+    font-size: 1rem;
+  }
+}
+
+.modern-grid {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  .modern-grid {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+.modern-card {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px #24324711;
+  padding: 24px 18px;
+  margin-bottom: 28px;
+}
+
+.birthday-celebrants {
+  margin-bottom: 32px;
+}
+.birthday-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.birthday-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 14px;
+  background: #f7fafd;
+  border-radius: 8px;
+  padding: 8px 12px;
+  box-shadow: 0 1px 4px #24324711;
+}
+.birthday-pic {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #3498db;
+}
+.birthday-name {
+  font-weight: 600;
+  color: #243247;
+  margin-right: 8px;
+}
+.birthday-date {
+  color: #2980b9;
+  font-size: 0.95em;
+}
+
+.church-stats ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.church-stats li {
+  color: #34495e;
+  margin-bottom: 8px;
+  font-size: 1.01em;
+}
 /* General Styles */
 * {
   font-family: "Arial", sans-serif;

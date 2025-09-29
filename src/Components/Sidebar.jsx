@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
+import afgLogo from "../assets/afg logo.jpg";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FaBars,
@@ -53,7 +54,15 @@ const Sidebar = () => {
   return (
     <div>
       <div className='toggle-btn' onClick={toggleSidebar}>
-        <FaBars />
+        <FaBars style={{ fontSize: 24 }} />
+        <div className='sidebar-logo-title'>
+          <img src={afgLogo} alt='AFG Logo' className='sidebar-logo' />
+          <div className='sidebar-title-text'>
+            <span className='sidebar-title-name'>
+              Amazing Full <span className='care'>Gospel</span> Church
+            </span>
+          </div>
+        </div>
       </div>
       <div
         className={`sidebar ${isCollapsed ? "collapsed" : ""} ${
@@ -76,11 +85,7 @@ const Sidebar = () => {
               <FaHandHoldingUsd /> {!isCollapsed && <span>Proceeds</span>}
             </Link>
           </li>
-          <li>
-            <Link to={"/events"} onClick={handleLinkClick}>
-              <FaCalendarPlus /> {!isCollapsed && <span>Events</span>}
-            </Link>
-          </li>
+
           <li>
             <Link to={"/reports"} onClick={handleLinkClick}>
               <FaFileAlt /> {!isCollapsed && <span>Reports</span>}

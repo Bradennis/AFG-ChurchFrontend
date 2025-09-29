@@ -58,13 +58,21 @@ const MembersPage = () => {
     <div className='members-page'>
       <header className='members-header'>
         <h1>Church Members</h1>
+      </header>
+      <div className='members-btn-group'>
         <button
           className='add-member-btn'
           onClick={() => navigate("/add-member")}
         >
           + Add Member
         </button>
-      </header>
+        <button
+          className='add-member-btn'
+          onClick={() => navigate("/attendance")}
+        >
+          ✍ Record Attendance
+        </button>
+      </div>
 
       <div className='search-and-tabs'>
         <input

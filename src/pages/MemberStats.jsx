@@ -1,69 +1,86 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { Pie, Bar } from "react-chartjs-2";
+import {
+  Chart as ChartJS,
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+} from "chart.js";
 
-const MemberStats = ({ memberId }) => {
+ChartJS.register(
+  Title,
+  Tooltip,
+  Legend,
+  ArcElement,
+  CategoryScale,
+  LinearScale,
+  BarElement
+);
+
+const MemberStats = () => {
   const [stats, setStats] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!memberId) return;
-
     const fetchStats = async () => {
       try {
-        setLoading(true);
-        const { data } = await axios.get(
-          `${
-            import.meta.env.VITE_API_URL
-          }/churchapp/attendance/memberStats/${memberId}`
+        const res = await axios.get(
+          "http://localhost:5000/churchapp/attendance/stats"
         );
-        setStats(data);
-        setError("");
+        setStats(res.data);
       } catch (err) {
-        setError("Could not fetch stats. Please check Member ID.");
-        setStats(null);
-      } finally {
-        setLoading(false);
+        console.error("Error fetching stats:", err);
       }
     };
 
     fetchStats();
-  }, [memberId]);
+  }, []);
 
-  if (loading) return <p>Loading stats...</p>;
-  if (error) return <p style={{ color: "red" }}>{error}</p>;
-  if (!stats) return null;
+  if (!stats) return <p>Loading stats...</p>;
+
+  // Pie Chart Data (Present vs Absent)
+  const pieData = {
+    labels: ["Present", "Absent"],
+    datasets: [
+      {
+        label: "Attendance",
+        data: [stats.presentCount, stats.absentCount],
+        backgroundColor: ["#36A2EB", "#FF6384"],
+      },
+    ],
+  };
+
+  // Bar Chart Data (Attendance per Meeting Type)
+  const barData = {
+    labels: Object.keys(stats.byMeetingType),
+    datasets: [
+      {
+        label: "Attendance by Meeting Type",
+        data: Object.values(stats.byMeetingType),
+        backgroundColor: "#4CAF50",
+      },
+    ],
+  };
 
   return (
-    <div className='member-stats' style={{ padding: "10px" }}>
-      <h4 style={{ marginBottom: "10px" }}>📊 Member Attendance Summary</h4>
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <tbody>
-          <tr>
-            <td style={cellStyle}>Total Meetings</td>
-            <td style={cellStyle}>{stats.total}</td>
-          </tr>
-          <tr>
-            <td style={cellStyle}>✔️ Present</td>
-            <td style={cellStyle}>{stats.present}</td>
-          </tr>
-          <tr>
-            <td style={cellStyle}>❌ Absent</td>
-            <td style={cellStyle}>{stats.absent}</td>
-          </tr>
-          <tr>
-            <td style={cellStyle}>📈 Attendance Rate</td>
-            <td style={cellStyle}>{stats.percent}%</td>
-          </tr>
-        </tbody>
-      </table>
+    <div style={{ padding: "20px" }}>
+      <h2>📊 Member Attendance Statistics</h2>
+
+      <div style={{ width: "400px", margin: "20px auto" }}>
+        <h3>✅ Present vs ❌ Absent</h3>
+        <Pie data={pieData} />
+      </div>
+
+      <div style={{ width: "600px", margin: "20px auto" }}>
+        <h3>📅 Attendance by Meeting Type</h3>
+        <Bar data={barData} />
+      </div>
     </div>
   );
-};
-
-const cellStyle = {
-  padding: "10px",
-  border: "1px solid #ccc",
 };
 
 export default MemberStats;

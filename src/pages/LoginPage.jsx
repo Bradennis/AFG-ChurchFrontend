@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./Login.css";
+import afgLogo from "../assets/afg logo.jpg";
 import { ClipLoader } from "react-spinners";
 import { GlobalContext } from "../Context/ContextApi";
 import { useNavigate } from "react-router-dom";
@@ -79,12 +80,13 @@ const LoginPage = ({ onLogin }) => {
     <div className='login-page'>
       <div className='register-page'>
         <div className='title'>
-          <h5
-            className='title-name'
-            style={{ fontSize: "1.4rem", color: "#243247" }}
-          >
-            faith<span className='care'>FLOW</span> app
-          </h5>
+          <img src={afgLogo} alt='AFG Logo' className='login-logo' />
+          <div className='title-text'>
+            <h5 className='title-name'>
+              Amazing Full<span className='care'> Gospel </span> Church
+            </h5>
+            <p>adjumani-kopey branch</p>
+          </div>
         </div>
         <div className='content-body'>
           <div className='img-content'>

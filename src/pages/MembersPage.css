@@ -5,9 +5,15 @@
 }
 
 .members-header {
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.members-btn-group {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
+  gap: 16px;
   margin-bottom: 20px;
 }
 
