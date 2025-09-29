@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AttendancePage.css";
 import axios from "axios";
-import * as XLSX from "xlsx";
+import * as XLSX from "xlsx/dist/xlsx.full.min.js";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
 
