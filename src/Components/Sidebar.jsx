@@ -59,7 +59,7 @@ const Sidebar = () => {
           <img src={afgLogo} alt='AFG Logo' className='sidebar-logo' />
           <div className='sidebar-title-text'>
             <span className='sidebar-title-name'>
-              Amazing Full <span className='care'>Gospel</span> Church
+              Amazing Full Gospel Evangelistic Church
             </span>
           </div>
         </div>
