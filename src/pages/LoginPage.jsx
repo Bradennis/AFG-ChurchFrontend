@@ -140,7 +140,10 @@ const LoginPage = ({ onLogin }) => {
         </div>
 
         <div className='footer'>
-          <p>Amazing Full Gospel Church, Adjumani-Kopey Branch &copy;2024</p>
+          <p>
+            Amazing Full Gospel Evangelistic Church, Adjumani-Kopey Branch
+            &copy;2024
+          </p>
         </div>
       </div>
     </div>

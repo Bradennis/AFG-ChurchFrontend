@@ -91,7 +91,7 @@ const HomePage = ({ isAdmin = true }) => {
       <div className='hero-section'>
         <img src={heroImg} alt='Church' className='hero-img' />
         <div className='hero-message'>
-          <h2>Welcome to Amazing Full Gospel Church</h2>
+          <h2>Welcome to Amazing Full Gospel Evangelistic Church</h2>
           <h5>Adjumani Kopey Assembly</h5>
           <p>
             Empowering lives, building faith, and serving the community
