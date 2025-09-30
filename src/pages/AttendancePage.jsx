@@ -2,10 +2,9 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./AttendancePage.css";
 import axios from "axios";
-import * as XLSX from "xlsx/dist/xlsx.full.min.js";
+import * as XLSX from "xlsx"; // ✅ FIXED
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
-
 axios.defaults.baseURL = "http://localhost:5000/churchapp";
 axios.defaults.withCredentials = true;
 
