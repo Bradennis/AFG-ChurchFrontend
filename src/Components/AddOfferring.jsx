@@ -2,83 +2,89 @@ import React, { useState } from "react";
 import "./AddOffering.css";
 import { FaTimes } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import axios from "axios"; // Import axios
+import axios from "axios";
 
 const AddOffering = () => {
   const navigate = useNavigate();
+
+  // Offering fields
   const [offerings, setOfferings] = useState({
     tithes: "",
     firstOffering: "",
     secondOffering: "",
     seedOffering: "",
     specialAppeal: "",
-    selectedDate: "",
     welfare: "",
+    selectedDate: "",
   });
+
+  // Expenses fields
   const [expenses, setExpenses] = useState([
     { title: "", amount: "", description: "" },
   ]);
 
+  // Handle offerings input
   const handleOfferingChange = (e) => {
     setOfferings({ ...offerings, [e.target.name]: e.target.value });
   };
 
+  // Handle expenses input
   const handleExpenseChange = (index, e) => {
     const updatedExpenses = [...expenses];
     updatedExpenses[index][e.target.name] = e.target.value;
     setExpenses(updatedExpenses);
   };
 
+  // Add new expense field
   const addExpenseField = () => {
     setExpenses([...expenses, { title: "", amount: "", description: "" }]);
   };
 
+  // Submit donation
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Calculate total expenses
-    const totalExpenses = expenses.reduce(
-      (total, expense) => total + (Number(expense.amount) || 0),
+    // Ensure all offering fields are numbers, default 0
+    const safeOfferings = {};
+    for (const key in offerings) {
+      if (key !== "selectedDate") {
+        safeOfferings[key] = Number(offerings[key]) || 0;
+      }
+    }
+
+    // Ensure expenses have numeric amounts defaulting to 0
+    const safeExpenses = expenses.map((exp) => ({
+      title: exp.title || "",
+      amount: Number(exp.amount) || 0,
+      description: exp.description || "",
+    }));
+
+    // Calculate total offerings and expenses
+    const totalOfferings = Object.values(safeOfferings).reduce(
+      (sum, val) => sum + val,
+      0
+    );
+    const totalExpenses = safeExpenses.reduce(
+      (sum, exp) => sum + exp.amount,
       0
     );
 
-    // Calculate total offerings
-    const totalOfferings =
-      Number(offerings.tithes) +
-      Number(offerings.firstOffering) +
-      Number(offerings.secondOffering) +
-      Number(offerings.seedOffering) +
-      Number(offerings.specialAppeal) +
-      Number(offerings.welfare);
-
-    // Prepare the data to be sent to the backend
+    // Prepare data for backend
     const donationData = {
       date: offerings.selectedDate,
-      total: totalOfferings - totalExpenses, // Subtract expenses from the total offerings
-      details: {
-        tithes: offerings.tithes,
-        firstOffering: offerings.firstOffering,
-        secondOffering: offerings.secondOffering,
-        seedOffering: offerings.seedOffering,
-        specialAppeal: offerings.specialAppeal,
-        welfare: offerings.welfare,
-      },
-      expenses: expenses,
+      total: totalOfferings - totalExpenses,
+      details: safeOfferings,
+      expenses: safeExpenses,
     };
 
     try {
-      // Send POST request to backend to add donation
       const response = await axios.post(
-        "http://localhost:3000/churchapp/donations/addDonation",
+        `${import.meta.env.VITE_API_URL}/churchapp/donations/addDonation`,
         donationData,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        { headers: { "Content-Type": "application/json" } }
       );
       console.log("Donation added:", response.data);
-      navigate("/donations"); // Navigate back to the donations page
+      navigate("/donations");
     } catch (error) {
       console.error("Error adding donation:", error);
       alert("There was an error adding the donation.");
@@ -97,21 +103,20 @@ const AddOffering = () => {
       <h2>Record Offerings and Expenses</h2>
 
       <form onSubmit={handleSubmit}>
-        {/* Offering Inputs */}
+        {/* Date selection */}
         <div className='offerings-section'>
-          <div className='offering-split'>
-            <div className='offering-cat'>
-              <label>Select Date:</label>
-              <input
-                type='date'
-                id='report-date'
-                name='selectedDate'
-                value={offerings.selectedDate}
-                onChange={handleOfferingChange}
-              />
-            </div>
+          <div className='offering-cat'>
+            <label>Select Date:</label>
+            <input
+              type='date'
+              name='selectedDate'
+              value={offerings.selectedDate}
+              onChange={handleOfferingChange}
+              required
+            />
           </div>
 
+          {/* Offerings */}
           <div className='offering-split'>
             <div className='offering-cat'>
               <label>Tithes:</label>
@@ -123,7 +128,6 @@ const AddOffering = () => {
                 placeholder='Enter amount for tithes'
               />
             </div>
-
             <div className='offering-cat'>
               <label>First Offering:</label>
               <input
@@ -147,7 +151,6 @@ const AddOffering = () => {
                 placeholder='Enter amount for second offering'
               />
             </div>
-
             <div className='offering-cat'>
               <label>Seed Offering:</label>
               <input
@@ -160,41 +163,19 @@ const AddOffering = () => {
             </div>
           </div>
 
-          <h3
-            style={{
-              marginTop: "50px",
-              marginBottom: "10px",
-              textTransform: "uppercase",
-            }}
-          >
-            Special Appeal
-          </h3>
-          <div className='offering-split'>
-            <div className='offering-cat'>
-              <label>Amount:</label>
-              <input
-                type='number'
-                name='specialAppeal'
-                value={offerings.specialAppeal}
-                onChange={handleOfferingChange}
-                placeholder='Enter amount for special appeal'
-              />
-            </div>
-          </div>
-        </div>
-
-        <h3
-          style={{
-            marginTop: "50px",
-            marginBottom: "10px",
-            textTransform: "uppercase",
-          }}
-        >
-          Welfare
-        </h3>
-        <div className='offering-split'>
           <div className='offering-cat'>
-            <label>Amount:</label>
+            <label>Special Appeal:</label>
+            <input
+              type='number'
+              name='specialAppeal'
+              value={offerings.specialAppeal}
+              onChange={handleOfferingChange}
+              placeholder='Enter amount for special appeal'
+            />
+          </div>
+
+          <div className='offering-cat'>
+            <label>Welfare:</label>
             <input
               type='number'
               name='welfare'
@@ -205,10 +186,9 @@ const AddOffering = () => {
           </div>
         </div>
 
-        {/* Expense Inputs */}
+        {/* Expenses */}
         <div className='expenses-section'>
           <h3>Expenses</h3>
-
           {expenses.map((expense, index) => (
             <div key={index} className='expense-item'>
               <div className='offering-cat'>
@@ -239,11 +219,8 @@ const AddOffering = () => {
                   style={{
                     width: "100%",
                     padding: "10px",
-                    marginBottom: "20px",
-                    border: "1px solid #ddd",
                     borderRadius: "6px",
                   }}
-                  type='text'
                   name='description'
                   value={expense.description}
                   onChange={(e) => handleExpenseChange(index, e)}
@@ -255,14 +232,14 @@ const AddOffering = () => {
 
           <button
             type='button'
-            className='add-expense-button'
             onClick={addExpenseField}
+            className='add-expense-button'
           >
             + Add Expense
           </button>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit */}
         <button type='submit' className='add-offering-submit-button'>
           Submit Offerings and Expenses
         </button>

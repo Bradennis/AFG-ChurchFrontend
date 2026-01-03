@@ -5,7 +5,7 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
-axios.defaults.baseURL = "http://localhost:5000/churchapp";
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}/churchapp`;
 axios.defaults.withCredentials = true;
 
 const AttendancePage = () => {
@@ -67,11 +67,7 @@ const AttendancePage = () => {
     const cur = attendance[memberId]?.[date] || "";
     const newStatusSymbol = cur === "✔️" ? "❌" : cur === "❌" ? "" : "✔️";
     const newStatus =
-      newStatusSymbol === "✔️"
-        ? "present"
-        : newStatusSymbol === "❌"
-        ? "absent"
-        : "";
+      newStatusSymbol === "✔️" ? "✔️" : newStatusSymbol === "❌" ? "❌" : "";
 
     try {
       await axios.patch("/attendance/toggle", {
@@ -131,9 +127,8 @@ const AttendancePage = () => {
     const records = members.map((m) => {
       const sym = attendance[m.id]?.[meeting.date] || "";
       return {
-        "Full Name": m.fullName,
-        "Meeting Type": meeting.type,
-        Status: sym || "Not marked",
+        memberId: m.id,
+        status: sym === "✔️" ? "✔️" : sym === "❌" ? "❌" : "❌",
       };
     });
 
@@ -194,27 +189,32 @@ const AttendancePage = () => {
 
   // NEW: download attendance for a specific date
   const handleDownload = (date, type) => {
-    const url = `http://localhost:5000/churchapp/attendance/export?date=${date}&type=${type}`;
+    const url = `${
+      import.meta.env.VITE_API_URL
+    }/churchapp/attendance/export?date=${date}&type=${type}`;
     window.open(url, "_blank");
   };
 
   return (
     <div className='attendance-container'>
-      <div style={{ display: "flex", gap: "16px", marginBottom: "24px" }}>
+      <h2>📋 Attendance Overview</h2>
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          gap: "16px",
+          marginBottom: "24px",
+        }}
+      >
         <button
           className='attendance-nav-btn'
           onClick={() => navigate("/attendance-reports")}
         >
           View Attendance Reports
         </button>
-        <button
-          className='attendance-nav-btn'
-          onClick={() => navigate("/attendance-summary")}
-        >
-          View Attendance Summary
-        </button>
       </div>
-      <h2>📋 Attendance Overview</h2>
 
       <div className='new-record-form'>
         <input

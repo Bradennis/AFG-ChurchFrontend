@@ -28,7 +28,9 @@ const DonationDetails = () => {
 
   const handleDelete = async () => {
     try {
-      await axios.delete(`http://localhost:3000/churchapp/donations/${_id}`);
+      await axios.delete(
+        `${import.meta.env.VITE_API_URL}/churchapp/donations/${_id}`
+      );
 
       navigate("/donations");
       toast.success("record deleted successfully", {
@@ -49,7 +51,7 @@ const DonationDetails = () => {
   const handleUpdate = async () => {
     try {
       await axios.put(
-        `http://localhost:3000/churchapp/donations/${_id}`,
+        `${import.meta.env.VITE_API_URL}/churchapp/donations/${_id}`,
         editedDonation
       );
 
@@ -108,7 +110,7 @@ const DonationDetails = () => {
           <div className='donation-summary'>
             <div className='summary-card'>
               <h3>
-                Net Proceeds:{" "}
+                Net Proceeds:
                 <span className='amount'>GH¢ {total.toLocaleString()}</span>
               </h3>
             </div>

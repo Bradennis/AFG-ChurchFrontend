@@ -13,6 +13,7 @@ const LowAttendance = () => {
           `${import.meta.env.VITE_API_URL}/churchapp/attendance/lowAttendance`
         );
         setLowAttendanceList(data);
+        console.log(data);
       } catch (err) {
         console.error("Failed to fetch low attendance members", err);
       } finally {
@@ -56,13 +57,13 @@ const LowAttendance = () => {
                   {member.fullName || `${member.firstName} ${member.lastName}`}
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {member.attendanceRate}%
+                  {(member.presents / 5) * 100}%
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {member.present}
+                  {member.presents}
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {member.absent}
+                  {5 - member.presents}
                 </td>
               </tr>
             ))}

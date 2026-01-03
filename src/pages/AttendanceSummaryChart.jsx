@@ -5,7 +5,7 @@ import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
 
-axios.defaults.baseURL = "http://localhost:5000/churchapp";
+axios.defaults.baseURL = `${import.meta.env.VITE_API_URL}/churchapp`;
 axios.defaults.withCredentials = true;
 
 const AttendanceSummaryPage = () => {

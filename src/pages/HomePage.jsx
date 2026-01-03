@@ -77,6 +77,9 @@ const HomePage = ({ isAdmin = true }) => {
           tithes: data.tithes,
           welfare: data.welfare,
         });
+        console.log("hello world");
+
+        console.log(data);
       } catch (error) {
         console.error("Error fetching proceeds summary:", error);
       }

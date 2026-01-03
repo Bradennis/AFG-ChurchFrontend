@@ -28,6 +28,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AttendancePage from "./pages/AttendancePage";
 import AttendanceReportsPage from "./pages/AttendanceReportsPage";
 import AttendanceSummaryChart from "./pages/AttendanceSummaryChart";
+import BroadcastMessages from "./pages/BroadCastMessages";
 // import UpdateEvent from "./Components/UpdateEvent";
 // import UpdateSermonPage from "./Components/UpdateSermonPage";
 
@@ -79,6 +80,7 @@ const App = () => {
                         path='/attendance-summary'
                         element={<AttendanceSummaryChart />}
                       />
+                      <Route path='/messages' element={<BroadcastMessages />} />
                       {/* <Route path='/create-event' element={<CreateEvents />} />
                       <Route
                         path='/update-event/:id'

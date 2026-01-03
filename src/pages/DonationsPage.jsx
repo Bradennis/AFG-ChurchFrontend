@@ -14,7 +14,7 @@ import {
 } from "chart.js";
 import "./DonationsPage.css";
 
-// Register the necessary Chart.js components
+// Register Chart.js components
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -32,6 +32,7 @@ const DonationsPage = () => {
 
   // Format date function
   const formatDate = (dateString) => {
+    if (!dateString) return "-";
     const options = {
       weekday: "short",
       month: "short",
@@ -48,45 +49,53 @@ const DonationsPage = () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}/churchapp/donations`,
-          {
-            params: searchTerm ? { date: searchTerm } : {},
-          }
+          { params: searchTerm ? { date: searchTerm } : {} }
         );
-        setDonationsData(response.data);
-        console.log(response.data);
+        setDonationsData(response.data || []);
       } catch (error) {
         console.error("Error fetching donations:", error);
+        setDonationsData([]);
       }
     };
 
     fetchDonations();
   }, [searchTerm]);
 
-  // Calculate overall proceeds and expenses
-  const totalProceeds = donationsData.reduce((sum, d) => sum + d.total, 0);
+  // Calculate overall proceeds and expenses safely
+  const totalProceeds = donationsData.reduce(
+    (sum, d) => sum + (d.total || 0),
+    0
+  );
   const totalExpenses = donationsData.reduce(
     (sum, donation) =>
       sum +
-      donation.expenses.reduce((subSum, expense) => subSum + expense.amount, 0),
+      (donation.expenses?.reduce(
+        (subSum, expense) => subSum + (expense.amount || 0),
+        0
+      ) || 0),
     0
   );
 
-  // Prepare chart data
+  // Prepare chart data safely
   const chartData = {
-    labels: donationsData.map((donation) => formatDate(donation.date)), // Labels are donation dates
+    labels: donationsData.map((donation) => formatDate(donation.date)),
     datasets: [
       {
         label: "Net Proceeds",
-        data: donationsData.map((donation) => donation.total), // Net proceeds data
+        data: donationsData.map((donation) => donation.total || 0),
         backgroundColor: "rgba(54, 162, 235, 0.2)",
         borderColor: "rgba(54, 162, 235, 1)",
         borderWidth: 1,
       },
       {
         label: "Total Expenses",
-        data: donationsData.map((donation) =>
-          donation.expenses.reduce((sum, expense) => sum + expense.amount, 0)
-        ), // Expenses data
+        data: donationsData.map(
+          (donation) =>
+            donation.expenses?.reduce(
+              (sum, expense) => sum + (expense.amount || 0),
+              0
+            ) || 0
+        ),
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
@@ -96,7 +105,8 @@ const DonationsPage = () => {
 
   const handleDateClick = (date) => {
     const selectedDonation = donationsData.find(
-      (donation) => donation.date === date
+      (donation) =>
+        new Date(donation.date).getTime() === new Date(date).getTime()
     );
     navigate(`/donation-details/${date}`, { state: { selectedDonation } });
   };
@@ -104,9 +114,10 @@ const DonationsPage = () => {
   return (
     <div className='donations-page'>
       <div className='header'>
-        <h1>Donations & Offerings</h1>
+        <h1>Proceeds & Offerings</h1>
         <p>Track and manage all offerings and expenses seamlessly.</p>
       </div>
+
       <div className='content'>
         <div className='search-bar'>
           <input
@@ -119,6 +130,7 @@ const DonationsPage = () => {
             <FaSearch /> Search
           </button>
         </div>
+
         {isAdmin ? (
           <>
             <div className='table-section'>
@@ -137,7 +149,7 @@ const DonationsPage = () => {
                         onClick={() => handleDateClick(donation.date)}
                       >
                         <td>{formatDate(donation.date)}</td>
-                        <td>GH¢ {donation.total.toLocaleString()}</td>
+                        <td>GH¢ {(donation.total || 0).toLocaleString()}</td>
                       </tr>
                     ))
                   ) : (
@@ -148,6 +160,7 @@ const DonationsPage = () => {
                 </tbody>
               </table>
             </div>
+
             <div className='summary-section'>
               <div className='summary-card'>
                 <h3>Overall Proceeds</h3>
@@ -159,7 +172,6 @@ const DonationsPage = () => {
               </div>
             </div>
 
-            {/* Graphical data trends */}
             <div className='chart-section'>
               <h3>Proceeds & Expenses Trends</h3>
               <Bar
@@ -172,9 +184,6 @@ const DonationsPage = () => {
               <button onClick={() => navigate("/add-offering")}>
                 <FaPlus /> Record New Proceeds
               </button>
-              {/* <button onClick={() => navigate("/payment")}>
-                <FaDonate /> Give Offering
-              </button> */}
             </div>
           </>
         ) : (

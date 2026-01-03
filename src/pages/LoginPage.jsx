@@ -83,7 +83,8 @@ const LoginPage = ({ onLogin }) => {
           <img src={afgLogo} alt='AFG Logo' className='login-logo' />
           <div className='title-text'>
             <h5 className='title-name'>
-              Amazing Full<span className='care'> Gospel </span> Church
+              Amazing Full<span className='care'> Gospel Evangelical</span>{" "}
+              Church
             </h5>
             <p>adjumani-kopey branch</p>
           </div>

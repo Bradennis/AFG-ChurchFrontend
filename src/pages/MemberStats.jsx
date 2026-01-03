@@ -1,66 +1,48 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Pie, Bar } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  CategoryScale,
-  LinearScale,
-  BarElement,
-} from "chart.js";
 
-ChartJS.register(
-  Title,
-  Tooltip,
-  Legend,
-  ArcElement,
-  CategoryScale,
-  LinearScale,
-  BarElement
-);
-
-const MemberStats = () => {
+const MemberStats = ({ memberId }) => {
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
+    if (!memberId) return;
+
     const fetchStats = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:5000/churchapp/attendance/stats"
+          `${
+            import.meta.env.VITE_API_URL
+          }/churchapp/attendance/stats/${memberId}`
         );
         setStats(res.data);
+        console.log(res.data);
       } catch (err) {
         console.error("Error fetching stats:", err);
       }
     };
 
     fetchStats();
-  }, []);
+  }, [memberId]);
 
   if (!stats) return <p>Loading stats...</p>;
 
-  // Pie Chart Data (Present vs Absent)
   const pieData = {
     labels: ["Present", "Absent"],
     datasets: [
       {
-        label: "Attendance",
         data: [stats.presentCount, stats.absentCount],
         backgroundColor: ["#36A2EB", "#FF6384"],
       },
     ],
   };
 
-  // Bar Chart Data (Attendance per Meeting Type)
   const barData = {
-    labels: Object.keys(stats.byMeetingType),
+    labels: Object.keys(stats.byMeetingType || {}),
     datasets: [
       {
         label: "Attendance by Meeting Type",
-        data: Object.values(stats.byMeetingType),
+        data: Object.values(stats.byMeetingType || {}),
         backgroundColor: "#4CAF50",
       },
     ],
