@@ -1,25 +1,24 @@
 import React, { useState } from "react";
 import {
-  FaUser,
-  FaEnvelope,
-  FaPhoneAlt,
-  FaLock,
-  FaCheck,
-  FaTimes,
-} from "react-icons/fa";
-import "./SettingsPage.css";
+  Box,
+  Card,
+  TextField,
+  Button,
+  Switch,
+  FormControlLabel,
+  Typography,
+  Divider,
+} from "@mui/material";
+import axios from "axios";
 
 const SettingsPage = () => {
   const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "johndoe@example.com",
-    phone: "+123456789",
+    name: "",
+    email: "",
+    phone: "",
   });
 
-  const [notifications, setNotifications] = useState({
-    email: true,
-    sms: false,
-  });
+  const [emailNotification, setEmailNotification] = useState(true);
 
   const [password, setPassword] = useState({
     current: "",
@@ -27,137 +26,130 @@ const SettingsPage = () => {
     confirm: "",
   });
 
-  const handleProfileChange = (e) => {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
+  const saveProfile = async () => {
+    await axios.put(
+      "http://localhost:5000/churchapp/settings/profile",
+      profile,
+      { withCredentials: true }
+    );
+    alert("Profile updated successfully");
   };
 
-  const handleNotificationChange = (e) => {
-    setNotifications({ ...notifications, [e.target.name]: e.target.checked });
+  const saveNotification = async () => {
+    await axios.put(
+      "http://localhost:5000/churchapp/settings/notifications",
+      { email: emailNotification },
+      { withCredentials: true }
+    );
+    alert("Notification preference saved");
   };
 
-  const handlePasswordChange = (e) => {
-    setPassword({ ...password, [e.target.name]: e.target.value });
-  };
+  const updatePassword = async () => {
+    try {
+      if (password.new !== password.confirm) {
+        return alert("Passwords do not match");
+      }
 
-  const saveProfile = () => {
-    alert("Profile updated successfully!");
-  };
+      await axios.put(
+        "http://localhost:5000/churchapp/settings/password",
+        {
+          currentPassword: password.current,
+          newPassword: password.new,
+        },
+        { withCredentials: true }
+      );
 
-  const updatePassword = () => {
-    if (password.new !== password.confirm) {
-      alert("New passwords do not match!");
-      return;
+      alert("Password updated successfully");
+    } catch (error) {
+      console.log(error);
     }
-    alert("Password updated successfully!");
   };
 
   return (
-    <div className='settings-page'>
-      <h2>Account Settings</h2>
+    <Box sx={{ maxWidth: 700, mx: "auto", mt: 4 }}>
+      <Typography variant='h4' gutterBottom>
+        Account Settings
+      </Typography>
 
-      {/* Profile Section */}
-      <div className='settings-section'>
-        <h3>
-          <FaUser /> Profile Information
-        </h3>
-        <div className='settings-input'>
-          <label>Name:</label>
-          <input
-            type='text'
-            name='name'
-            value={profile.name}
-            onChange={handleProfileChange}
-          />
-        </div>
-        <div className='settings-input'>
-          <label>Email:</label>
-          <input
-            type='email'
-            name='email'
-            value={profile.email}
-            onChange={handleProfileChange}
-          />
-        </div>
-        <div className='settings-input'>
-          <label>Phone:</label>
-          <input
-            type='tel'
-            name='phone'
-            value={profile.phone}
-            onChange={handleProfileChange}
-          />
-        </div>
-        <button className='settings-btn' onClick={saveProfile}>
-          <FaCheck /> Save Profile
-        </button>
-      </div>
+      {/* Profile */}
+      <Card sx={{ p: 3, mb: 3 }}>
+        <Typography variant='h6'>Profile Information</Typography>
+        <Divider sx={{ my: 2 }} />
+        <TextField
+          fullWidth
+          label='Name'
+          margin='normal'
+          onChange={(e) => setProfile({ ...profile, name: e.target.value })}
+        />
+        <TextField
+          fullWidth
+          label='Email'
+          margin='normal'
+          onChange={(e) => setProfile({ ...profile, email: e.target.value })}
+        />
+        <TextField
+          fullWidth
+          label='Phone'
+          margin='normal'
+          onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
+        />
+        <Button variant='contained' onClick={saveProfile}>
+          Save Profile
+        </Button>
+      </Card>
 
-      {/* Notifications Section */}
-      <div className='settings-section'>
-        <h3>
-          <FaEnvelope /> Notification Preferences
-        </h3>
-        <div className='settings-checkbox'>
-          <label>
-            <input
-              type='checkbox'
-              name='email'
-              checked={notifications.email}
-              onChange={handleNotificationChange}
+      {/* Email Notifications */}
+      <Card sx={{ p: 3, mb: 3 }}>
+        <Typography variant='h6'>Notifications</Typography>
+        <Divider sx={{ my: 2 }} />
+        <FormControlLabel
+          control={
+            <Switch
+              checked={emailNotification}
+              onChange={(e) => setEmailNotification(e.target.checked)}
             />
-            Email Notifications
-          </label>
-        </div>
-        <div className='settings-checkbox'>
-          <label>
-            <input
-              type='checkbox'
-              name='sms'
-              checked={notifications.sms}
-              onChange={handleNotificationChange}
-            />
-            SMS Notifications
-          </label>
-        </div>
-      </div>
+          }
+          label='Receive Email Notifications'
+        />
+        <Button variant='contained' onClick={saveNotification}>
+          Save Preference
+        </Button>
+      </Card>
 
-      {/* Password Update Section */}
-      <div className='settings-section'>
-        <h3>
-          <FaLock /> Change Password
-        </h3>
-        <div className='settings-input'>
-          <label>Current Password:</label>
-          <input
-            type='password'
-            name='current'
-            value={password.current}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <div className='settings-input'>
-          <label>New Password:</label>
-          <input
-            type='password'
-            name='new'
-            value={password.new}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <div className='settings-input'>
-          <label>Confirm New Password:</label>
-          <input
-            type='password'
-            name='confirm'
-            value={password.confirm}
-            onChange={handlePasswordChange}
-          />
-        </div>
-        <button className='settings-btn' onClick={updatePassword}>
-          <FaCheck /> Update Password
-        </button>
-      </div>
-    </div>
+      {/* Password */}
+      <Card sx={{ p: 3 }}>
+        <Typography variant='h6'>Change Password</Typography>
+        <Divider sx={{ my: 2 }} />
+        <TextField
+          fullWidth
+          type='password'
+          label='Current Password'
+          margin='normal'
+          onChange={(e) =>
+            setPassword({ ...password, current: e.target.value })
+          }
+        />
+        <TextField
+          fullWidth
+          type='password'
+          label='New Password'
+          margin='normal'
+          onChange={(e) => setPassword({ ...password, new: e.target.value })}
+        />
+        <TextField
+          fullWidth
+          type='password'
+          label='Confirm New Password'
+          margin='normal'
+          onChange={(e) =>
+            setPassword({ ...password, confirm: e.target.value })
+          }
+        />
+        <Button color='error' variant='contained' onClick={updatePassword}>
+          Update Password
+        </Button>
+      </Card>
+    </Box>
   );
 };
 
