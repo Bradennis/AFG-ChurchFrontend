@@ -180,7 +180,7 @@ const DonationsPage = () => {
               />
             </div>
 
-            <div className='actions-section'>
+            <div className='actions-section' style={{ color: "white" }}>
               <button onClick={() => navigate("/add-offering")}>
                 <FaPlus /> Record New Proceeds
               </button>

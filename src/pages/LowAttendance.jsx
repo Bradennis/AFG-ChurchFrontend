@@ -1,4 +1,3 @@
-// LowAttendance.jsx
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -12,8 +11,17 @@ const LowAttendance = () => {
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}/churchapp/attendance/lowAttendance`
         );
-        setLowAttendanceList(data);
-        console.log(data);
+
+        // ✅ Map backend fields to frontend-friendly fields
+        const formattedData = data.map((member) => ({
+          _id: member.id,
+          fullName: member.fullName,
+          presents: member.attended,
+          missed: member.missed,
+        }));
+
+        setLowAttendanceList(formattedData);
+        console.log(formattedData);
       } catch (err) {
         console.error("Failed to fetch low attendance members", err);
       } finally {
@@ -54,16 +62,16 @@ const LowAttendance = () => {
             {lowAttendanceList.map((member) => (
               <tr key={member._id}>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {member.fullName || `${member.firstName} ${member.lastName}`}
+                  {member.fullName || "Unknown Member"}
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {(member.presents / 5) * 100}%
+                  {((member.presents / 5) * 100).toFixed(0)}%
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
                   {member.presents}
                 </td>
                 <td style={{ padding: "10px", border: "1px solid #ccc" }}>
-                  {5 - member.presents}
+                  {member.missed}
                 </td>
               </tr>
             ))}

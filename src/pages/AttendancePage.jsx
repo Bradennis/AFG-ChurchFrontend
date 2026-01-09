@@ -44,7 +44,12 @@ const AttendancePage = () => {
       }));
 
       setMembers(cleanedMembers);
-      setMeetings(backendMeetings || []);
+      const sortedMeetings = [...backendMeetings].sort(
+        (a, b) => new Date(b.date) - new Date(a.date) // recent first
+      );
+
+      setMeetings(sortedMeetings);
+
       setAttendance(backendAttendance || {});
     } catch (err) {
       console.error("Failed to load initial data:", err);
@@ -104,7 +109,11 @@ const AttendancePage = () => {
         date: newDate,
         type: newType,
       });
-      setMeetings((prev) => [...prev, res.data]);
+      setMeetings((prev) =>
+        [...prev, res.data].sort(
+          (a, b) => new Date(b.date) - new Date(a.date) // recent first
+        )
+      );
 
       setAttendance((prev) => {
         const updated = { ...prev };
@@ -255,6 +264,7 @@ const AttendancePage = () => {
         </select>
 
         <button
+          style={{ color: "white" }}
           onClick={() => {
             if (!queryDate || !newType) {
               alert("Please select both date and type");

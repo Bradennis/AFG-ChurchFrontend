@@ -287,7 +287,10 @@ const ReportPage = () => {
             <p>Date: {new Date(matchedReport.date).toLocaleDateString()}</p>
             <p>Uploaded by: {matchedReport.sender.name}</p>
             {/* <a href={`${import.meta.env.VITE_API_URL}/${matchedReport.fileUrl}`} download> */}
-            <button className='download-btn'>
+            <button
+              className='download-btn'
+              style={{ color: "white", background: "#1255b9ff" }}
+            >
               <FaDownload /> Download Report
             </button>
             {/* </a> */}
